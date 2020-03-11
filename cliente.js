@@ -1,12 +1,12 @@
 export default class Cliente {
 
     constructor(nombre, direccion, telefono){
-        this.nombre = nombre
-        this.direccion = direccion
-        this.telefono = telefono
+        this._nombre = nombre
+        this._direccion = direccion
+        this._telefono = telefono
     }
 
     getPerfil(){
-        return `${this.nombre}, Av.${this.direccion}, telefono ${this.telefono}`
+        return `${this._nombre}, Av.${this._direccion}, telefono ${this._telefono}`
     }
 }

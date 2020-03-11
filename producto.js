@@ -1,10 +1,19 @@
-export default class Producto {
-    constructor(nombre, precio){
-        this._nombre = nombre
-        this._precio = precio
-    }
+import Precio from './precio.js';
 
-    getDescripcion(){
-        return`${this._nombre} ${this._precio.getPrecio()}`
-    }
+export default class Producto {
+  /**
+   *
+   * @param {string} nombre Nombre del producto
+   * @param {Precio} precio PRECIO del producto
+   */
+  constructor(nombre, precio) {
+    this.nombre = nombre;
+    this.precio = precio;
+  }
+
+  getDescripcion() {
+    let descripcion = `${this.nombre}  ${this.precio.getPrecio()}`;
+
+    return descripcion;
+  }
 }

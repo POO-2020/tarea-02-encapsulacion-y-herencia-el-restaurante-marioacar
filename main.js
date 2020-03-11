@@ -1,97 +1,98 @@
-import Pedido from "./pedido.js"
-import Tiempo from "./tiempo.js"
-import Direccion from "./direccion.js";
-import Fecha from "./fecha.js";
-import Cliente from "./cliente.js";
-import Producto from "./producto.js";
-import Precio from "./precio.js";
+import Restaurante from './resturante.js';
+import Producto from './producto.js';
+import Precio from './precio.js';
+import ElementoPedido from './elemento-pedido.js';
+import Pedido from './pedido.js';
+import Fecha from './fecha.js';
+import Tiempo from './tiempo.js';
+import Cliente from './cliente.js';
+import Direccion from './direccion.js';
+
 class Main {
+  constructor() {
+    this.fecha = new Fecha(15, 6, 2005);
 
-    constructor() {
-        this.dir1 = new Direccion('belisario dominguez', '39A', 'no', 'centro', '28510', 'queseria', 'cuahutemoc')
-        this.pedido1 = new Pedido(new Fecha(2000, 9, 24), new Tiempo(4, 50, "AM"), new Cliente('walle', this.dir1, '3123398831'));
-        this.pedido2 = new Pedido(new Fecha(2000, 9, 24), new Tiempo(4, 50, "AM"), new Cliente('Astolfo WinterFlang', new Direccion('residencial chida', '39A', 'no', 'centro', '28510', 'queseria', 'cuahutemoc'), '312 - 330 - 20 - 79'));
-        this.producto1 = new Producto("pizza de peperoni grande")
-        this.producto2 = new Producto("pizza familiar hyper grande")
-        this.cliente = new Cliente("Hola",this.dir1,'3123998831')
-    }
+    this.tiempo1 = new Tiempo({ hora: 10, minuto: 25, periodo: 'am' });
+    this.tiempo2 = new Tiempo({ hora: 10, minuto: 25, periodo: 'pm' });
 
-    probarFecha() {
-        console.log(`**FECHA**`)
-        let fecha = new Fecha(20, 12, 2000)
-        console.log(fecha.getAños())
-        console.log(fecha.getMeses())
-        console.log(fecha.getSemanas())
-        console.log(fecha.getDias())
-        console.log(fecha.getFecha())
-        console.log(fecha.getDiaFecha())
-    }
+    this.direccion = new Direccion(
+      'Av. Universidad',
+      333,
+      0,
+      'Las Víboras',
+      28040,
+      'Colima',
+      'Colima'
+    );
 
-    probarTiempo() {
-        console.log("**TIEMPO**")
-        let tiempo = new Tiempo(1, 55, "pm")
-        console.log(tiempo.getFormato24())
-    }
+    this.precio = new Precio(2500.5);
 
-    probarDireccion() {
-        console.log("**DIRECCION**")
-        let direccion = new Direccion("villa bonita", 571, "real Loma", 28984, "villa", "villa de Alvarez")
-        console.log(direccion.getFormatoCorto())
-        console.log(direccion.getFormatoLargo())
-    }
+    this.producto = new Producto('Pizza Hawaiana', this.precio);
+    this.elemento = new ElementoPedido(2, this.producto);
+    this.elemento2 = new ElementoPedido(1, this.producto);
+    this.elemento3 = new ElementoPedido(3, this.producto);
 
-    probarPrecio() {
-        console.log("**PRECIO**")
-        let precio = new Precio(125.50)
-        console.log(precio.getPrecio())
-    }
+    this.cliente = new Cliente('Juan Pérez Díaz', this.direccion, 3124563256);
 
-    probarProducto() {
-        console.log("**PRODUCTO**")
-        let producto = new Producto("pizza de peperoni grande", new Precio(250.50))
-        console.log(producto.getDescripcion())
-    }
+    this.pedido = new Pedido(this.fecha, this.tiempo1, this.cliente);
+    this.pedido.agregarElemento(this.elemento);
+    this.pedido.agregarElemento(this.elemento2);
+    this.pedido.agregarElemento(this.elemento3);
+  }
 
-    probarPedido() {
-        console.log("**ELEMENTO PEDIDO**")
-        let pedido = new Pedido(new Fecha(2015,5,20),new Tiempo(5,20,"AM"), this.cliente)
-        console.log(pedido.getResumen())
-    }
+  probarFecha() {
+    console.log(this.fecha.getAños());
+    console.log(this.fecha.getMeses());
+    console.log(this.fecha.getSemanas());
+    console.log(this.fecha.getDias());
+    console.log(this.fecha.getFecha());
+    console.log(this.fecha.getDiaFecha());
+  }
 
-    ProbarPerfil() {
-        console.log("**PERFIL**")
-        
-        console.log(this.cliente)
-    }
+  probarTiempo() {
+    console.log(this.tiempo1.getFormato12());
+    console.log(this.tiempo2.getFormato12());
+    console.log(this.tiempo1.getFormato24());
+    console.log(this.tiempo2.getFormato24());
+  }
 
-    probarPedidoF() {
-        console.log("**PedidoF**")
-        
-        console.log(this.pedido1.getCostoTotal())
-        console.log(this.pedido1.getResumen())
-        console.log(this.pedido1.getProductos())
-        pedido.agregarElemento(this.producto)
-        pedido.listarElementos()
-    }
+  probarDireccion() {
+    console.log(this.direccion.getFormatoCorto());
+    console.log(this.direccion.getFormatoExtendido());
+  }
 
-    probarRestaurante() {
-        console.log("**RESTAURANTE**")
-        console.log(this.pedido1.producto1)
-        console.log(this.pedido2.producto2)
-        this.producto1.registrarDoctores(this.pedido1)
-        this.producto2.registrarDoctores(this.pedido2)
-        this.hospital.listarDoctores()
-    }
+  probarPrecio() {
+    console.log(this.precio.getPrecio());
+  }
 
+  probarProducto() {
+    console.log(this.producto.getDescripcion());
+  }
+
+  probarCliente() {
+    console.log(this.cliente.getPerfil());
+  }
+
+  probarElementoPedido() {
+    console.log(this.elemento.getDescripcion());
+  }
+
+  probarPedido() {
+    console.log(this.pedido.getResumen());
+    console.log(this.pedido.getNumeroElementos());
+    console.log(this.pedido.getNumeroProductos());
+    console.log(this.pedido.getCostoTotal());
+    this.pedido.listarElementos();
+  }
 }
 
-let app = new Main()
-app.probarFecha()
-app.probarTiempo()
-app.probarDireccion()
-app.probarPrecio()
-app.probarProducto()
-app.probarPedido()
-app.ProbarPerfil()
-app.probarPedidoF()
-app.probarRestaurante()
+let app = new Main();
+
+app.probarFecha();
+app.probarTiempo();
+app.probarDireccion();
+app.probarPrecio();
+app.probarProducto();
+app.probarElementoPedido();
+app.probarCliente();
+app.probarPedido();

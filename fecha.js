@@ -1,26 +1,66 @@
 export default class Fecha {
-    constructor(Año, Mes, Dia) {
-        this._Fecha = new Date(Año, Mes - 1, Dia);
-        this._Dia = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Vierenes", "Sábado"]
-        this._Mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-        this._Actual = new Date(Date.now())
-    }
-    getAños() {
-        return `los años que han pasado son ${this._Actual.getFullYear() - this._Fecha.getFullYear()} desde ${this._Fecha.getFullYear()}`
-    }
-    getMeses() {
-        return `los meses que han pasado son ${this._Actual.getFullYear() - this._Fecha.getFullYear() * 12} desde ${this._Fecha.getFullYear()} `
-    }
-    getSemanas() {
-        return `las semanas que han pasado son ${this._Actual.getFullYear() - this._Fecha.getFullYear() * 48} desde ${this._Fecha.getFullYear()}`
-    }
-    getDias() {
-        return `los dias que han pasado son ${this._Actual.getFullYear() - this._Fecha.getFullYear() * 365} desde ${this._Fecha.getFullYear()}`
-    }
-    getFecha() {
-        return `${this._Fecha.getDate()}/${this._Mes[this._Fecha.getMonth()]}/${this._Fecha.getFullYear()}`
-    }
-    getDiaFecha() {
-        return `${this._Dia[this._Fecha.getDate()]}`
-    }
+  /**
+   *
+   * @param {number} dia
+   * @param {number} mes
+   * @param {number} año
+   */
+  constructor(dia, mes, año) {
+    this.fecha = new Date(año, mes - 1, dia);
+  }
+
+  getAños() {
+    let hoy = new Date(Date.now());
+    let años = hoy.getFullYear() - this.fecha.getFullYear();
+    return años;
+  }
+
+  getMeses() {
+    return this.getAños() * 12;
+  }
+
+  getSemanas() {
+    return this.getMeses() * 4;
+  }
+
+  getDias() {
+    return this.getSemanas() * 7;
+  }
+
+  getFecha() {
+    return `${this.fecha.getDate()}/${
+      nombreMes[this.fecha.getMonth()]
+    }/${this.fecha.getFullYear()}`;
+  }
+
+  getDiaFecha() {
+    let dia = nombreDia[this.fecha.getDay()];
+
+    return dia;
+  }
 }
+
+const nombreDia = [
+  'Domingo',
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes',
+  'Sabado'
+];
+
+const nombreMes = [
+  'Ene',
+  'Feb',
+  'Mar',
+  'Abr',
+  'May',
+  'Jun',
+  'Jul',
+  'Ago',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dic'
+];

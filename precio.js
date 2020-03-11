@@ -1,10 +1,16 @@
- export default class Precio{
+export default class Precio {
+  /**
+   *
+   * @param {number} valor El valor del producto
+   */
+  constructor(valor) {
+    this.valor = valor;
+  }
 
-    constructor(precio){
-        this._precio = precio
-    }
-
-    getPrecio(){
-        return `$${this._precio.toFixed(2)}`
-    }
+  getPrecio() {
+    return this.valor.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'MXN'
+    });
+  }
 }

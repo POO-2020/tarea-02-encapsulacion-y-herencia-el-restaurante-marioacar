@@ -8,14 +8,14 @@ export default class ElementoPedido {
    * @param {number} cantidad Cantidad del producto que se va a comprar
    */
   constructor(cantidad, producto) {
-    this.cantidad = cantidad;
-    this.producto = producto;
+    this._cantidad = cantidad;
+    this._producto = producto;
   }
 
   getDescripcion() {
-    let costoTotal = new Precio(this.cantidad * this.producto.precio.valor);
+    let costoTotal = new Precio(this.cantidad * this._producto.precio.valor);
     return `${this.cantidad} x ${
-      this.producto.nombre
+      this._producto.nombre
     } ${costoTotal.getPrecio()}`;
   }
 }

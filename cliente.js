@@ -12,7 +12,7 @@ export default class Cliente {
   }
 
   getPerfil() {
-    let perfil = `${this.nombre}, ${
+    let perfil = `${this._nombre}, ${
       this._telefono
     }, ${this._direccion.getFormatoCorto()}`;
 

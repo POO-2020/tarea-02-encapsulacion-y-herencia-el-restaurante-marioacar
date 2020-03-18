@@ -78,12 +78,21 @@ class Main {
   }
 
   probarPedido() {
+    let pedido = new Pedido ({
+      fecha: new Fecha(12,8,2020),
+      hora: new Hora(12),
+      cliente: new Cliente ("mario"),
+    })
     console.log(this.pedido.getResumen());
     console.log(this.pedido.getNumeroElementos());
     console.log(this.pedido.getNumeroProductos());
     console.log(this.pedido.getCostoTotal());
     this.pedido.listarElementos();
   }
+}
+
+probarRestaurante(){
+  
 }
 
 let app = new Main();

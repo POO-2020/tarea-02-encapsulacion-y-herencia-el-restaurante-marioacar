@@ -1,6 +1,5 @@
 export default class Fecha {
   /**
-   *
    * @param {number} dia
    * @param {number} mes
    * @param {number} año
@@ -9,6 +8,7 @@ export default class Fecha {
     this._fecha = new Date(año, mes - 1, dia);
   }
 
+
   getAños() {
     let hoy = new Date(Date.now());
     let años = hoy.getFullYear() - this._fecha.getFullYear();
@@ -16,21 +16,21 @@ export default class Fecha {
   }
 
   getMeses() {
-    return this._getAños() * 12;
+    return this.getAños() * 12;
   }
 
   getSemanas() {
-    return this._getMeses() * 4;
+    return this.getMeses() * 4;
   }
 
   getDias() {
-    return this._getSemanas() * 7;
+    return this.getSemanas() * 7;
   }
 
   getFecha() {
-    return `${this.fecha.getDate()}/${
-      nombreMes[this.fecha.getMonth()]
-    }/${this.fecha.getFullYear()}`;
+    return `${this._fecha.getDate()}/${
+      nombreMes[this._fecha.getMonth()]
+    }/${this._fecha.getFullYear()}`;
   }
 
   getDiaFecha() {

@@ -35,4 +35,36 @@ export default class Restaurante {
       console.log(`${pedido.getDescripcion()}`);
     });
   }
+  encontrarPedido(pedido){
+    let result = this._pedidos.find(e => e.esIgualA(pedido))
+
+    return result
+}
+
+encontrarIndicePedido(pedido){
+    let indice = this._pedidos.findIndex(e => e.esIgualA(pedido))
+
+    return indice
+}
+
+eliminarPedido(pedido){
+    let indice = this.encontrarIndicePedido(pedido)
+
+    if (indice < 0){
+        return false
+    }
+
+    this._pedidos.splice(indice, 1)
+    return true
+}
+
+actualizarPedido(pedido, nuevoPedido){
+    let indice = this.encontrarIndicePedido(pedido)
+
+    if (indice < 0){
+        return false
+    }
+
+    this._pedidos.splice(indice, 1, nuevoPedido)
+    return true
 }

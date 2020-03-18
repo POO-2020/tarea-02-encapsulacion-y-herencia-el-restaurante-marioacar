@@ -83,16 +83,40 @@ class Main {
       hora: new Hora(12),
       cliente: new Cliente ("mario"),
     })
-    console.log(this.pedido.getResumen());
-    console.log(this.pedido.getNumeroElementos());
-    console.log(this.pedido.getNumeroProductos());
-    console.log(this.pedido.getCostoTotal());
+    console.log(pedido.getResumen());
+    console.log(pedido.getNumeroElementos());
+    console.log(pedido.getNumeroProductos());
+    console.log(pedido.getCostoTotal());
     this.pedido.listarElementos();
   }
 }
 
 probarRestaurante(){
-  
+  let Restaurante = new Restaurante({
+    nombre: new Nombre ("MAMAMIA PIZZERIA"),
+    telefono: new telefono (3125998470),
+    direccion: new Direccion ("AV ITALINA DE ITALIA #360")
+  })
+  this.Restaurante.registrarProductos(producto)
+  this.Restaurante.listarProductos(producto)
+  this.Restaurante.registrarPedido(pedido)
+  this.Restaurante.listarPedido()
+  this.Restaurante.encontrarPedido(pedio)
+  this.Restaurante.encontrarIndicePedido(pedido)
+  this.restaurante.eliminarPedido(pedido)
+  this.Restaurante.ActualizarPedido(pedido,nuevoPedido)
+
+}
+
+ProbarClienteFrecuente(){
+  let clienteFrecuente = new ClienteFrecuente({
+    numeroCliente: new NumeroCliente(2012432),
+    fechaRegistro: new FechaRegistro(30,5,2020),
+    nombre: new Nombre("Axel", "Mario", "Carvantes"),
+    direccion: new Direccion("AV que no es avenida #000"),
+    telefono: new telefono(3125519033)
+  })
+  console.log(clienteFrecuente.getPerfil())
 }
 
 let app = new Main();
@@ -105,3 +129,4 @@ app.probarProducto();
 app.probarElementoPedido();
 app.probarCliente();
 app.probarPedido();
+app.probarRestaurante();
